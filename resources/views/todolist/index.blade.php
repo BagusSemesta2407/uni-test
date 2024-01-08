@@ -35,6 +35,7 @@
         </div>
         <div class="col-md-10 mx-auto col-lg-5">
             <form class="p-4 p-md-5 border rounded-3 bg-light" method="post" action="/todolist">
+                @csrf
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" name="todo" placeholder="todo">
                     <label for="todo">Todo</label>
@@ -62,7 +63,10 @@
                         <th scope="row">{{$item['id']}}</th>
                         <td>{{$item['todo']}}</td>
                         <td>
-                            <button class="w-100 btn btn-lg btn-danger" type="submit">Remove</button>
+                            <form action="/todolist/{{$item['id']}}/delete" method="post">
+                                @csrf
+                                <button class="w-100 btn btn-lg btn-danger" type="submit">Remove</button>
+                            </form>
                         </td>
                     </tr>
                     @endforeach
